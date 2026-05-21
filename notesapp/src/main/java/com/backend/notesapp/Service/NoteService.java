@@ -19,7 +19,7 @@ public class NoteService {
     }
 
     public List<Notes> getNotes() {
-        // business logic 
+        // business logic
         return repository.findAll();
     }
 
@@ -27,5 +27,16 @@ public class NoteService {
         return repository.save(note);
     }
 
+    public Notes updateNotes(Integer id, Notes note) {
+        Notes newNote = repository.findById(id).orElseThrow();
+        if (!note.getContent().isBlank())
+            newNote.setContent(note.getContent());
+        if (!note.getTitle().isBlank())
+            newNote.setTitle(note.getTitle());
+        return repository.save(newNote);
+    }
 
+    public void deleteNote(Integer id) {
+        repository.deleteById(id);
+    }
 }

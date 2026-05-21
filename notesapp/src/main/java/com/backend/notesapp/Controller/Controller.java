@@ -3,7 +3,9 @@ package com.backend.notesapp.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,16 +31,17 @@ public class Controller {
     }
 
     @PostMapping("/api/notes")
-    void insertNote(@RequestBody Notes note){
+    void insertNote(@RequestBody Notes note) {
         service.insertNote(note);
     }
 
-    @PutMapping("/api/notes")
-    void updateNote(){
-        service.updateNote();
+    @PutMapping("/api/notes/{id}")
+    void updateNote(@PathVariable Integer id, @RequestBody Notes note) {
+        service.updateNotes(id, note);
     }
-  
-    void deleteNote(){
-    service.deleteNote();
+
+    @DeleteMapping("api/notes/{id}")
+    void deleteNote(@PathVariable Integer id) {
+        service.deleteNote(id);
     }
 }
