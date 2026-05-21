@@ -1,0 +1,6 @@
+{
+    "files.exculde": {
+        "**/*.class": true
+    },
+    "files.autosave": "afterDelay",
+}
